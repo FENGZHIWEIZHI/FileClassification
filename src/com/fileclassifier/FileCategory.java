@@ -1,9 +1,15 @@
-"package com.fileclassifier;
+package com.fileclassifier;
 
 import java.util.*;
 
+/**
+ * 二级文件分类体系
+ * 一级：主分类（视频文件、音频文件等）
+ * 二级：后缀子类（MP4视频、MP3音频等）
+ */
 public enum FileCategory {
 
+    // ==================== 视频文件 ====================
     VIDEO("视频文件", Map.ofEntries(
         Map.entry("MP4视频", Set.of("mp4", "m4v")),
         Map.entry("AVI视频", Set.of("avi")),
@@ -18,6 +24,7 @@ public enum FileCategory {
         Map.entry("其他视频", Set.of("ogv", "divx", "xvid", "h264", "hevc"))
     )),
 
+    // ==================== 音频文件 ====================
     AUDIO("音频文件", Map.ofEntries(
         Map.entry("MP3音频", Set.of("mp3")),
         Map.entry("WAV音频", Set.of("wav", "wave")),
@@ -32,6 +39,7 @@ public enum FileCategory {
         Map.entry("其他音频", Set.of("ac3", "dts", "ra", "voc", "au", "caf"))
     )),
 
+    // ==================== 图片文件 ====================
     IMAGE("图片文件", Map.ofEntries(
         Map.entry("JPG图片", Set.of("jpg", "jpeg", "jpe", "jfif")),
         Map.entry("PNG图片", Set.of("png")),
@@ -47,6 +55,7 @@ public enum FileCategory {
         Map.entry("其他图片", Set.of("exr", "hdr", "pcx", "tga", "ai", "eps", "cdr"))
     )),
 
+    // ==================== 文档文件 ====================
     DOCUMENT("文档文件", Map.ofEntries(
         Map.entry("PDF文档", Set.of("pdf")),
         Map.entry("Word文档", Set.of("doc", "docx", "docm", "dot", "dotx", "wps", "wpt")),
@@ -58,6 +67,7 @@ public enum FileCategory {
         Map.entry("其他文档", Set.of("pages", "numbers", "key", "latex", "tex", "wpd"))
     )),
 
+    // ==================== 压缩文件 ====================
     ARCHIVE("压缩文件", Map.ofEntries(
         Map.entry("ZIP压缩", Set.of("zip", "zipx", "jar", "war", "ear", "apk", "ipa", "cbz")),
         Map.entry("RAR压缩", Set.of("rar", "rev", "cbr")),
@@ -70,6 +80,7 @@ public enum FileCategory {
         Map.entry("其他压缩", Set.of("lz", "lzma", "z", "ace", "arc", "uue"))
     )),
 
+    // ==================== 代码文件 ====================
     CODE("代码文件", Map.ofEntries(
         Map.entry("Java代码", Set.of("java", "class")),
         Map.entry("Python代码", Set.of("py", "pyc", "pyo", "pyd", "pyw", "ipynb")),
@@ -91,6 +102,7 @@ public enum FileCategory {
                 "groovy", "gradle", "m", "mm", "hs", "lhs", "erl", "hrl", "ex", "exs"))
     )),
 
+    // ==================== 配置文件 ====================
     CONFIG("配置文件", Map.ofEntries(
         Map.entry("JSON文件", Set.of("json", "jsonc", "json5")),
         Map.entry("XML文件", Set.of("xml", "xsl", "xsd", "wsdl", "rss", "atom")),
@@ -102,6 +114,7 @@ public enum FileCategory {
         Map.entry("其他配置", Set.of("plist", "reg", "inf", "editorconfig", "gitignore", "dockerignore"))
     )),
 
+    // ==================== 可执行文件 ====================
     EXECUTABLE("可执行文件", Map.ofEntries(
         Map.entry("Windows程序", Set.of("exe", "msi", "msu", "com", "scr", "pif")),
         Map.entry("Linux程序", Set.of("run", "bin", "deb", "rpm", "AppImage")),
@@ -111,6 +124,7 @@ public enum FileCategory {
         Map.entry("其他可执行", Set.of("bat", "cmd", "ps1", "vbs", "wsf"))
     )),
 
+    // ==================== 字体文件 ====================
     FONT("字体文件", Map.ofEntries(
         Map.entry("TrueType字体", Set.of("ttf", "ttc")),
         Map.entry("OpenType字体", Set.of("otf", "otc")),
@@ -118,6 +132,7 @@ public enum FileCategory {
         Map.entry("其他字体", Set.of("eot", "fon", "fnt", "bdf", "pcf", "pfa", "pfb"))
     )),
 
+    // ==================== 电子书 ====================
     EBOOK("电子书文件", Map.ofEntries(
         Map.entry("EPUB电子书", Set.of("epub")),
         Map.entry("MOBI电子书", Set.of("mobi", "azw", "azw3", "kfx")),
@@ -125,6 +140,7 @@ public enum FileCategory {
         Map.entry("其他电子书", Set.of("fb2", "lit", "lrf", "prc", "pdb", "pml", "snb", "tcr"))
     )),
 
+    // ==================== 数据库文件 ====================
     DATABASE("数据库文件", Map.ofEntries(
         Map.entry("SQLite数据库", Set.of("db", "sqlite", "sqlite3", "db3", "s3db")),
         Map.entry("Access数据库", Set.of("mdb", "accdb", "accde", "accdr")),
@@ -132,12 +148,14 @@ public enum FileCategory {
         Map.entry("其他数据库", Set.of("frm", "ibd", "myd", "myi", "ndf", "ldf", "mdf"))
     )),
 
+    // ==================== 磁盘映像 ====================
     DISK_IMAGE("磁盘映像", Map.ofEntries(
         Map.entry("光盘映像", Set.of("iso", "cue", "bin", "mdf", "mds", "nrg", "img", "ccd", "dmg")),
         Map.entry("虚拟磁盘", Set.of("vmdk", "vdi", "vhd", "vhdx", "qcow2", "qcow", "vmem")),
         Map.entry("其他映像", Set.of("ima", "flp", "dsk"))
     )),
 
+    // ==================== 3D/CAD文件 ====================
     CAD_3D("3D/CAD文件", Map.ofEntries(
         Map.entry("STL模型", Set.of("stl")),
         Map.entry("OBJ模型", Set.of("obj", "mtl")),
@@ -151,6 +169,7 @@ public enum FileCategory {
                 "prt", "asm", "sldprt", "sldasm", "ipt", "iam"))
     )),
 
+    // ==================== 证书密钥 ====================
     CERTIFICATE("证书密钥", Map.ofEntries(
         Map.entry("PEM证书", Set.of("pem", "crt", "cert", "ca-bundle")),
         Map.entry("DER证书", Set.of("der", "cer", "csr")),
@@ -159,11 +178,13 @@ public enum FileCategory {
         Map.entry("其他证书", Set.of("gpg", "asc", "sig"))
     )),
 
+    // ==================== 种子文件 ====================
     TORRENT("种子文件", Map.ofEntries(
         Map.entry("BT种子", Set.of("torrent")),
         Map.entry("磁力链接", Set.of("magnet"))
     )),
 
+    // ==================== 邮件文件 ====================
     EMAIL("邮件文件", Map.ofEntries(
         Map.entry("EML邮件", Set.of("eml", "emlx")),
         Map.entry("MSG邮件", Set.of("msg")),
@@ -171,6 +192,7 @@ public enum FileCategory {
         Map.entry("其他邮件", Set.of("mbx", "dat"))
     )),
 
+    // ==================== 临时文件 ====================
     TEMP("临时文件", Map.ofEntries(
         Map.entry("临时文件", Set.of("tmp", "temp", "swp", "swo")),
         Map.entry("缓存文件", Set.of("cache", "cch")),
@@ -178,6 +200,7 @@ public enum FileCategory {
         Map.entry("其他临时", Set.of("pid", "lock", "lck"))
     )),
 
+    // ==================== 其他文件（兜底） ====================
     OTHER("其他文件", Map.ofEntries(
         Map.entry("未分类", Set.of()),
         Map.entry("无后缀文件", Set.of())
@@ -199,14 +222,24 @@ public enum FileCategory {
         this.extensionToSubCategory = Collections.unmodifiableMap(builder);
     }
 
-    public String getCategoryName() { return categoryName; }
+    public String getCategoryName() {
+        return categoryName;
+    }
 
-    public Map<String, Set<String>> getSubCategories() { return subCategories; }
+    public Map<String, Set<String>> getSubCategories() {
+        return subCategories;
+    }
 
+    /**
+     * 根据后缀查找对应的二级分类名称
+     */
     public String getSubCategory(String extension) {
         return extensionToSubCategory.get(extension.toLowerCase());
     }
 
+    /**
+     * 对文件后缀进行分类，返回一级+二级分类结果
+     */
     public static CategoryResult classify(String extension) {
         if (extension == null || extension.isEmpty()) {
             return new CategoryResult(OTHER, "无后缀文件");
@@ -222,5 +255,9 @@ public enum FileCategory {
         return new CategoryResult(OTHER, "未分类");
     }
 
-    public record CategoryResult(FileCategory category, String subCategory) {}
-}"
+    /**
+     * 分类结果记录（一级分类 + 二级分类名称）
+     */
+    public record CategoryResult(FileCategory category, String subCategory) {
+    }
+}
